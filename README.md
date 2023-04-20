@@ -109,8 +109,9 @@ kubectl get configmaps
 
 kubectl describe configmaps
 
-#secrets:
-#imperative:
+# Secrets
+
+# imperative Secrets:
 #literals:
 kubectl create secret generic \
 secret-name --from-literal=key=value
@@ -123,10 +124,10 @@ app-secret --from-literal=DB_Host=mysql \
 kubectl create secret generic \
 secret-name --from-file=app_secret.properties
 
-#encode values:
+# encode values:
 echo -n 'value'|base64
 
-
+# get secrets
 kubectl get secrets
 
 kubectl describe secrets
@@ -134,11 +135,11 @@ kubectl describe secrets
 kubectl get secret app-secret -o yml
 
 
-#decode:
+# decode values in secrets:
 echo -n 'hashedvalue'"|base64 --decode
 
 
-#secrets in docker
+# secrets in docker
   docker run ubuntu sleep 3600
   ps aux
 
@@ -150,7 +151,7 @@ echo -n 'hashedvalue'"|base64 --decode
 
 
 
-#serviceaccounts
+# Serviceaccounts
 
 kubectl create serviceaccount dashboard-sa
 
@@ -177,13 +178,13 @@ docker run nginx
 
 docker ps -a
 
-
+# Logs and Debugg
 kubectl create –f event-simulator.yml
 
 kubectl logs –f event-simulator-pod
 kubectl logs –f event-simulator-pod event-simulator
 
-
+# Pod Design
 kubectl get pods --selector app=App1
 
 kubectl create –f deployment-definition.yml
@@ -191,6 +192,8 @@ kubectl get deployments
 kubectl get replicasets
 kubectl get pods
 kubectl get all
+
+# Roll out and update
 
 kubectl rollout status deployment/myapp-deployment
 
